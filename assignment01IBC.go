@@ -47,13 +47,16 @@ func InsertBlock(dataToInsert BlockData, chainHead *Block) *Block {
 func ListBlocks(chainHead *Block) string {
 	Sstring := "hllo"
 	newHead := chainHead
+	i := 1
 	for newHead != nil {
-		fmt.Print("HASH: ")
-		fmt.Println(newHead.CurrentHash)
-		fmt.Print("TRANSACTIONS: ")
+		fmt.Println("Block Number = ", i)
+		fmt.Print("Transactions = ")
 		fmt.Println(newHead.Data.Transactions)
-		fmt.Print("PREV HASH: ")
+		fmt.Print("Hash = ")
+		fmt.Println(newHead.CurrentHash)
+		fmt.Print("Hash of Block ", i-1, " = ")
 		fmt.Printf(newHead.PrevHash)
+		i++
 		fmt.Print("\n----------------------------------------\n")
 		newHead = newHead.PrevPointer
 	}
@@ -78,30 +81,6 @@ func VerifyChain(chainHead *Block) {
 	}
 	fmt.Println("Blockchain Verified")
 	return
-
-	/*if chainHead != nil {
-		for chainHead.PrevPointer != nil {
-			if chainHead.PrevHash != CalculateHash(chainHead.PrevPointer) {
-				fmt.Println("Mismatched")
-				//fmt.Println(chainHead.PrevPointer.Data.Transactions + " has current hash as " + CalculateHash(*chainHead.PrevPointer) + " but it should be " + chainHead.PrevHash)
-			} else {
-				fmt.Println("Verified")
-			}
-			chainHead = chainHead.PrevPointer
-		}
-	}*/
-
-	/*
-	     newHead := chainHead
-	   	for true {
-	   		if newHead.PrevPointer == nil {
-	   			break
-	   		}
-	   		prevhashstored := newHead.PrevHash
-	   		fmt.Print("PREV HASH STORED : ")
-	   		fmt.Println(prevhashstored)
-	   		newHead = newHead.PrevPointer
-	   	}*/
 }
 
 // ChangeBlock -> alter a transaction
