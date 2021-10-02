@@ -119,5 +119,6 @@ func ChangeBlock(oldTrans string, newTrans string, chainHead *Block) {
 				break
 			}
 		}
+		current = current.PrevPointer
 	}
 }
