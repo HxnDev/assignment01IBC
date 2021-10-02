@@ -47,10 +47,7 @@ func InsertBlock(dataToInsert BlockData, chainHead *Block) *Block {
 func ListBlocks(chainHead *Block) string {
 	Sstring := "hllo"
 	newHead := chainHead
-	for newHead.PrevPointer != nil {
-		if newHead == nil {
-			break
-		}
+	for newHead != nil {
 		fmt.Print("HASH: ")
 		fmt.Println(newHead.CurrentHash)
 		fmt.Print("TRANSACTIONS: ")
