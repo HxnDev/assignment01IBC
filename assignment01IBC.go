@@ -46,7 +46,7 @@ func InsertBlock(dataToInsert BlockData, chainHead *Block) *Block {
 // ListBlocks displays a list of every block
 func ListBlocks(chainHead *Block) {
 	newHead := chainHead
-	for true {
+	for newHead.PrevPointer != nil {
 		if newHead == nil {
 			break
 		}
