@@ -44,7 +44,8 @@ func InsertBlock(dataToInsert BlockData, chainHead *Block) *Block {
 }
 
 // ListBlocks displays a list of every block
-func ListBlocks(chainHead *Block) {
+func ListBlocks(chainHead *Block) string {
+	Sstring := "hllo"
 	newHead := chainHead
 	for newHead.PrevPointer != nil {
 		if newHead == nil {
@@ -59,21 +60,39 @@ func ListBlocks(chainHead *Block) {
 		fmt.Print("\n----------------------------------------\n")
 		newHead = newHead.PrevPointer
 	}
+	return Sstring
 }
 
 // VerifyChain verifies the blockchain for illegal transaction
 func VerifyChain(chainHead *Block) {
-	if chainHead != nil {
+	for c := chainHead; c != nil; c = c.PrevPointer {
+		hashc := CalculateHash(c)
+		if c.PrevPointer != nil {
+			hashp := CalculateHash(c.PrevPointer)
+			if hashp != c.PrevHash || hashc != c.CurrentHash {
+				fmt.Println("Blockchain is compromised")
+				return
+			}
+		}
+		if hashc != c.CurrentHash {
+			fmt.Println("Blockchain is compromised")
+			return
+		}
+	}
+	fmt.Println("Blockchain Verified")
+	return
+
+	/*if chainHead != nil {
 		for chainHead.PrevPointer != nil {
 			if chainHead.PrevHash != CalculateHash(chainHead.PrevPointer) {
 				fmt.Println("Mismatched")
-				//fmt.Println(chainHead.PrevPointer.Data + " has current hash as " + CalculateHash(chainHead.PrevPointer) + " but it should be " + chainHead.PrevHash)
+				//fmt.Println(chainHead.PrevPointer.Data.Transactions + " has current hash as " + CalculateHash(*chainHead.PrevPointer) + " but it should be " + chainHead.PrevHash)
 			} else {
 				fmt.Println("Verified")
 			}
 			chainHead = chainHead.PrevPointer
 		}
-	}
+	}*/
 
 	/*
 	     newHead := chainHead
