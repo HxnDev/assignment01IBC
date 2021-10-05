@@ -2,7 +2,9 @@ package assignment01IBC
 
 import (
 	"crypto/sha256"
+	"encoding/hex"
 	"fmt"
+	"strings"
 )
 
 // BlockData is a structure containing Transactions
@@ -20,7 +22,13 @@ type Block struct {
 
 // CalculateHash : Computes the Hash of a complete block
 func CalculateHash(inputBlock *Block) string {
-	return fmt.Sprintf("%x", sha256.Sum256([]byte(fmt.Sprintf("%v", *inputBlock))))
+	tran := inputBlock.Data.Transactions
+	tranintostring := strings.Join(transactions[:], ",")
+
+	hash := sha256.Sum256([]byte(tranintostring))
+	hashh := hex.EncodeToString(hash[:])
+
+	return hashh
 }
 
 // InsertBlock : Inserts a block into the blockchain
