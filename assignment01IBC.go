@@ -44,8 +44,7 @@ func InsertBlock(dataToInsert BlockData, chainHead *Block) *Block {
 }
 
 // ListBlocks displays a list of every block
-func ListBlocks(chainHead *Block) string {
-	Sstring := "hllo"
+func ListBlocks(chainHead *Block) {
 	newHead := chainHead
 	i := 1
 	for newHead != nil {
@@ -57,10 +56,9 @@ func ListBlocks(chainHead *Block) string {
 		fmt.Print("Hash of Block ", i-1, " = ")
 		fmt.Printf(newHead.PrevHash)
 		i++
-		fmt.Print("\n----------------------------------------\n")
+		fmt.Print("\n\n")
 		newHead = newHead.PrevPointer
 	}
-	return Sstring
 }
 
 // VerifyChain verifies the blockchain for illegal transaction
