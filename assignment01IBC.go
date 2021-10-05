@@ -107,3 +107,35 @@ func ChangeBlock(oldTrans string, newTrans string, chainHead *Block) {
 		current = current.PrevPointer
 	}
 }
+
+/*
+// Main File for Assignment 01
+
+package main
+
+import (
+	"fmt"
+
+	a1 "github.com/HxnDev/assignment01IBC"
+)
+
+func main() {
+	var chainHead *a1.Block
+	genesis := a1.BlockData{Transactions: []string{"S2E", "S2Z"}}
+	chainHead = a1.InsertBlock(genesis, chainHead)
+	fmt.Println("Data on Head = ", chainHead.Data)
+	fmt.Println("Hash of current block =", chainHead.CurrentHash)
+
+	secondBlock := a1.BlockData{Transactions: []string{"E2Alice", "E2Bob", "S2John"}}
+	chainHead = a1.InsertBlock(secondBlock, chainHead)
+	fmt.Println("Head of second block = ", chainHead.Data)
+	fmt.Println("Hash of second block = ", chainHead.CurrentHash)
+	fmt.Println("Transactions of previous block (block 1) = ", chainHead.PrevPointer.Data.Transactions)
+	fmt.Println("Hash of previous block (block 1) = ", chainHead.PrevPointer.CurrentHash)
+
+	fmt.Print("\n\nLIST OF BLOCKS\n")
+	a1.ListBlocks(chainHead)
+	a1.ChangeBlock("S2E", "S2Trudy", chainHead)
+	a1.VerifyChain(chainHead)
+}
+*/
