@@ -23,7 +23,7 @@ type Block struct {
 // CalculateHash : Computes the Hash of a complete block
 func CalculateHash(inputBlock *Block) string {
 	tran := inputBlock.Data.Transactions
-	tranintostring := strings.Join(transactions[:], ",")
+	tranintostring := strings.Join(tran[:], ",")
 
 	hash := sha256.Sum256([]byte(tranintostring))
 	hashh := hex.EncodeToString(hash[:])
